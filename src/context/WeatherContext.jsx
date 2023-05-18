@@ -26,7 +26,7 @@ export function WeatherContextProvider(props) {
     if(!city) {
         return
     }
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=3c2b2e8599894fa41ec9da28bfb8b3d3`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${import.meta.env.VITE_API_KEY}`)
     .then(response => response.json())
     .then(data => {
       setResults(data)
@@ -37,7 +37,7 @@ useEffect(() => {
   if(!lat || !lon){
     return
   }
-  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3c2b2e8599894fa41ec9da28bfb8b3d3`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
   .then(response => response.json())
   .then(data => {
     setWeather({
@@ -53,7 +53,7 @@ useEffect(() => {
   if (!lat || !lon) {
     return;
   }
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=3c2b2e8599894fa41ec9da28bfb8b3d3`)
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`)
     .then(response => response.json())
     .then(data => setWeatherHourly(data.list.slice(0,5)))
     .catch(error => console.error(error));
